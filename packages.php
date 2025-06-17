@@ -1,6 +1,7 @@
 <?php
 
-include 'config.php';
+require_once 'config.php';
+require_once 'auth_check.php';
 
 // Cek jika ada aksi POST untuk menambah paket baru
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['add_package'])) {
@@ -37,7 +38,8 @@ if (isset($_GET['delete'])) {
     exit();
 }
 
-include 'header.php';
+// Panggil header setelah semua logika PHP selesai
+require_once 'header.php';
 ?>
 
 <h2>Manajemen Paket</h2>
@@ -109,6 +111,6 @@ if (isset($_GET['status'])) {
 </table>
 
 <?php
-include 'footer.php';
+require_once 'footer.php';
 $conn->close();
 ?>

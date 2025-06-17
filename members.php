@@ -1,7 +1,7 @@
 <?php
 
-// Sertakan file config untuk koneksi database.
 include 'config.php';
+include 'auth_check.php'; 
 
 // Cek jika ada aksi POST untuk menambah member baru
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['add_member'])) {

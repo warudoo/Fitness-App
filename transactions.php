@@ -1,6 +1,7 @@
 <?php
-
 include 'config.php';
+include 'auth_check.php'; 
+
 
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['add_transaction'])) {
     $id_member = $_POST['id_member'];

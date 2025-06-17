@@ -1,17 +1,14 @@
 <?php
 // login.php: Halaman untuk proses login admin
 
-// Mulai session
-session_start();
+// Sertakan file konfigurasi database, yang juga sudah memulai session
+require_once "config.php";
 
-// Jika sudah login, redirect ke halaman utama
+// Jika user sudah login, arahkan ke halaman utama
 if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) {
     header('location: index.php');
     exit;
 }
-
-// Sertakan file konfigurasi database
-require_once "config.php";
 
 $username = $password = "";
 $username_err = $password_err = $login_err = "";
@@ -19,14 +16,13 @@ $username_err = $password_err = $login_err = "";
 // Proses data form saat form disubmit
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
-    // Validasi username
+    // Validasi input
     if (empty(trim($_POST["username"]))) {
         $username_err = "Silakan masukkan username.";
     } else {
         $username = trim($_POST["username"]);
     }
 
-    // Validasi password
     if (empty(trim($_POST["password"]))) {
         $password_err = "Silakan masukkan password Anda.";
     } else {
@@ -35,7 +31,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Jika tidak ada error validasi
     if (empty($username_err) && empty($password_err)) {
-        // Siapkan statement SELECT
         $sql = "SELECT id_user, username, password, nama_lengkap FROM user_admin WHERE username = ?";
 
         if ($stmt = $conn->prepare($sql)) {
@@ -45,33 +40,32 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             if ($stmt->execute()) {
                 $stmt->store_result();
 
-                // Cek jika username ada, lalu verifikasi password
                 if ($stmt->num_rows == 1) {
-                    $stmt->bind_result($id, $username, $hashed_password, $nama_lengkap);
+                    $stmt->bind_result($id, $username_db, $hashed_password, $nama_lengkap);
                     if ($stmt->fetch()) {
+                        // Verifikasi password
                         if (password_verify($password, $hashed_password)) {
                             // Password benar, mulai session baru
-                            session_start();
+                            // (session sudah dimulai dari config.php)
 
-                            // Simpan data di session
+                            // Simpan data di variabel session
                             $_SESSION["loggedin"] = true;
                             $_SESSION["id_user"] = $id;
-                            $_SESSION["username"] = $username;
+                            $_SESSION["username"] = $username_db;
                             $_SESSION["nama_lengkap"] = $nama_lengkap;
 
                             // Redirect ke halaman utama
                             header("location: index.php");
+                            exit;
                         } else {
-                            // Password salah
                             $login_err = "Username atau password salah.";
                         }
                     }
                 } else {
-                    // Username tidak ditemukan
                     $login_err = "Username atau password salah.";
                 }
             } else {
-                echo "Oops! Terjadi kesalahan. Silakan coba lagi nanti.";
+                $login_err = "Oops! Terjadi kesalahan. Silakan coba lagi nanti.";
             }
             $stmt->close();
         }
@@ -79,28 +73,32 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $conn->close();
 }
 ?>
-
 <!DOCTYPE html>
 <html lang="id">
 <head>
     <meta charset="UTF-8">
     <title>Login Admin</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; background-color: #f8f9fa; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
-        .wrapper { width: 360px; padding: 30px; background: #fff; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
-        .wrapper h2 { text-align: center; margin-bottom: 20px; color: #343a40; }
-        .form-group { margin-bottom: 15px; }
-        .form-group label { display: block; margin-bottom: 5px; font-weight: 500; }
-        .form-control { width: 100%; padding: 10px; border: 1px solid #ced4da; border-radius: 5px; box-sizing: border-box; }
-        .btn-primary { width: 100%; padding: 10px; background-color: #007bff; color: white; border: none; border-radius: 5px; cursor: pointer; font-size: 16px; }
+        body { font-family: 'Inter', sans-serif; background-color: #f4f7f9; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
+        .wrapper { width: 380px; padding: 40px; background: #fff; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); text-align: center; }
+        .wrapper h2 { margin-bottom: 10px; color: #2c3e50; }
+        .wrapper p { margin-bottom: 25px; color: #6c757d; }
+        .form-group { margin-bottom: 20px; text-align: left; }
+        .form-group label { display: block; margin-bottom: 8px; font-weight: 600; }
+        .form-control { width: 100%; padding: 12px; border: 1px solid #ced4da; border-radius: 8px; box-sizing: border-box; }
+        .btn-primary { width: 100%; padding: 12px; background-color: #007bff; color: white; border: none; border-radius: 8px; cursor: pointer; font-size: 16px; font-weight: 600; }
         .btn-primary:hover { background-color: #0056b3; }
-        .alert-danger { color: #721c24; background-color: #f8d7da; border: 1px solid #f5c6cb; padding: 10px; border-radius: 5px; margin-bottom: 15px; }
+        .alert-danger { color: #721c24; background-color: #f8d7da; border: 1px solid #f5c6cb; padding: 12px; border-radius: 8px; margin-bottom: 20px; }
+        .invalid-feedback { color: #e74c3c; font-size: 0.875em; padding-top: 4px; }
     </style>
 </head>
 <body>
     <div class="wrapper">
-        <h2>Login Admin</h2>
-        <p>Silakan isi kredensial Anda untuk masuk.</p>
+        <h2>Selamat Datang</h2>
+        <p>Silakan login untuk mengakses dashboard.</p>
         <?php 
         if(!empty($login_err)){
             echo '<div class="alert alert-danger">' . $login_err . '</div>';
@@ -109,12 +107,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
             <div class="form-group">
                 <label>Username</label>
-                <input type="text" name="username" class="form-control <?php echo (!empty($username_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $username; ?>">
+                <input type="text" name="username" class="form-control" value="<?php echo $username; ?>">
                 <span class="invalid-feedback"><?php echo $username_err; ?></span>
             </div>    
             <div class="form-group">
                 <label>Password</label>
-                <input type="password" name="password" class="form-control <?php echo (!empty($password_err)) ? 'is-invalid' : ''; ?>">
+                <input type="password" name="password" class="form-control">
                 <span class="invalid-feedback"><?php echo $password_err; ?></span>
             </div>
             <div class="form-group">
