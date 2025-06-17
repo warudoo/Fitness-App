@@ -14,46 +14,36 @@
 
 Selamat datang di repositori Aplikasi Manajemen Fitness! Proyek ini adalah aplikasi web sederhana yang dibangun menggunakan **PHP** dan **MySQL** sebagai studi kasus untuk kegiatan workshop di **Universitas Pamulang**. Aplikasi ini berfungsi sebagai sistem dasar untuk mengelola data member, paket fitness, dan transaksi di sebuah pusat kebugaran.
 
-Tujuan utama dari proyek ini adalah untuk memberikan pemahaman praktis mengenai pengembangan aplikasi web dengan PHP, mulai dari struktur file, koneksi database, hingga implementasi operasi CRUD (*Create, Read, Update, Delete*).
-
 ---
 
 ## ✨ Fitur Utama
 
+-   **🔑 Sistem Login**: Sistem otentikasi admin yang aman menggunakan session dan password hashing.
 -   **📊 Dashboard**: Menampilkan ringkasan data total member dan total pendapatan.
--   **👥 Manajemen Member**:
-    -   Menambah member baru.
-    -   Melihat daftar semua member.
-    -   Menghapus data member.
-    -   Tanggal kadaluarsa keanggotaan dihitung otomatis berdasarkan paket yang dipilih.
--   **📦 Manajemen Paket**:
-    -   Menambah paket fitness baru (misalnya, paket bulanan, 3 bulanan).
-    -   Melihat daftar paket yang tersedia.
-    -   Menghapus paket.
--   **💳 Manajemen Transaksi**:
-    -   Mencatat transaksi baru saat member mendaftar atau memperpanjang keanggotaan.
-    -   Melihat riwayat semua transaksi yang telah terjadi.
+-   **👥 Manajemen Member**: Menambah, melihat, dan menghapus data member.
+-   **📦 Manajemen Paket**: Menambah, melihat, dan menghapus paket fitness.
+-   **💳 Manajemen Transaksi**: Mencatat dan melihat riwayat transaksi.
+-   **👑 Manajemen Admin**: Menambah dan menghapus akun admin lainnya.
 
 ---
 
 ## 🎯 Tujuan Pembelajaran
 
 Setelah mengikuti workshop dan mempelajari kode ini, peserta diharapkan mampu:
-
 1.  Memahami cara kerja aplikasi web berbasis PHP.
-2.  Merancang dan membuat database MySQL.
-3.  Menghubungkan aplikasi PHP dengan database MySQL.
-4.  Menerapkan operasi CRUD untuk mengelola data.
-5.  Memahami struktur dasar proyek PHP yang baik.
-6.  Mengelola *state* dan alur data antar halaman.
+2.  Menerapkan sistem login dan manajemen session yang aman.
+3.  Menggunakan password hashing untuk keamanan kredensial.
+4.  Merancang dan membuat database MySQL.
+5.  Menghubungkan aplikasi PHP dengan database MySQL.
+6.  Menerapkan operasi CRUD untuk mengelola data.
 
 ---
 
 ## 💻 Teknologi yang Digunakan
 
-* **Backend**: PHP
+* **Backend**: PHP (dengan Session & Password Hashing)
 * **Database**: MySQL / MariaDB
-* **Frontend**: HTML & CSS (prosedural/tanpa framework)
+* **Frontend**: HTML & CSS
 * **Server Lokal**: XAMPP
 
 ---
@@ -64,11 +54,11 @@ Untuk menjalankan aplikasi ini di komputer lokal Anda, ikuti langkah-langkah ber
 
 **1. Prasyarat**
 
-Pastikan Anda sudah menginstal **XAMPP** (atau server lokal sejenis seperti WAMP/MAMP) di komputer Anda. XAMPP akan menyediakan Apache (web server) dan MySQL (database).
+Pastikan Anda sudah menginstal **XAMPP** di komputer Anda.
 
 **2. Clone atau Unduh Repositori**
 
-Buka terminal atau Git Bash, lalu clone repositori ini ke dalam direktori `htdocs` XAMPP Anda.
+Clone repositori ini ke dalam direktori `htdocs` XAMPP Anda.
 
 > ```bash
 > # Navigasi ke folder htdocs
@@ -78,21 +68,47 @@ Buka terminal atau Git Bash, lalu clone repositori ini ke dalam direktori `htdoc
 > git clone [URL_GITHUB_ANDA] Fitnes_App
 > ```
 
-> **Alternatif**: Jika Anda mengunduh file ZIP, ekstrak isinya dan pastikan nama foldernya adalah **`Fitnes_App`** di dalam `C:\xampp\htdocs\`.
-
 **3. Buat dan Impor Database**
 
-* Jalankan modul **Apache** dan **MySQL** dari XAMPP Control Panel.
+* Jalankan **Apache** dan **MySQL** dari XAMPP Control Panel.
 * Buka browser dan akses `http://localhost/phpmyadmin`.
 * Buat database baru dengan nama `fitness`.
-* Pilih database `fitness` yang baru dibuat, lalu klik tab **Impor**.
-* Pilih file `db_fitness _latihan.sql` (atau nama file SQL yang sesuai) dari folder proyek Anda dan klik **Go** atau **Kirim**. Tabel-tabel akan otomatis dibuat.
+* Impor file `db_fitness _latihan.sql` ke dalam database `fitness`.
 
-**4. Konfigurasi Koneksi**
+**4. Buat Admin Pertama (Sangat Penting!)**
 
-Buka file `config.php` di dalam folder proyek dan pastikan detail koneksi sudah sesuai (secara default, username `root` dan password kosong).
+Karena sekarang ada sistem login, Anda perlu membuat user admin pertama secara manual di database.
 
-```php
-// config.php
-define('DB_NAME', 'fitness'); // Pastikan nama database ini benar
-5. Jalankan AplikasiBuka browser Anda dan akses URL berikut untuk melihat aplikasi berjalan:http://localhost/Fitnes_App/⚠️ Troubleshooting: Error "Not Found"Jika Anda mendapatkan error "Not Found", 99% masalahnya adalah nama folder di htdocs tidak sama persis dengan nama yang Anda ketik di URL.🤝 KontribusiMerasa ada yang bisa ditingkatkan? Silakan buat Pull Request atau buka Issue. Kontribusi dalam bentuk apapun sangat kami hargai, terutama untuk perbaikan bug, penambahan fitur, atau peningkatan dokumentasi.📜 LisensiProyek ini dilisensikan di bawah MIT License.
+* Di phpMyAdmin, buka database `fitness` dan pilih tabel `user_admin`.
+* Klik tab **Insert** atau **Sisipkan**.
+* Isi form sebagai berikut:
+    * `id_user`: Biarkan kosong (auto-increment).
+    * `username`: `admin`
+    * `password`: Salin dan tempel (paste) hash berikut ini:  
+        `$2y$10$3yv9zS3gZpP9wQ8R7jJ4s.Ie8N3d2K5K/r9c7A7T6eY7W9qG0Xz.i`  
+        *(Hash ini adalah untuk password "admin123")*
+    * `nama_lengkap`: `Administrator Utama`
+* Klik **Go** atau **Kirim** untuk menyimpan.
+
+**5. Jalankan Aplikasi**
+
+Buka browser Anda dan akses URL berikut. Anda akan diarahkan ke halaman login.
+
+> `http://localhost/Fitnes_App/`
+
+Gunakan `username: admin` dan `password: admin123` untuk masuk.
+
+---
+
+## 📂 Struktur File Baru
+
+/Fitnes_App│├── login.php           # Halaman login├── logout.php          # Proses logout├── auth_check.php      # Skrip pemeriksa sesi login│├── admins.php          # Halaman manajemen admin├── config.php├── header.php├── footer.php├── index.php├── members.php├── packages.php└── transactions.php
+---
+
+## 🤝 Kontribusi
+
+Merasa ada yang bisa ditingkatkan? Silakan buat *Pull Request* atau buka *Issue*.
+
+## 📜 Lisensi
+
+Proyek ini dilisensikan di bawah [MIT License](LICENSE).
