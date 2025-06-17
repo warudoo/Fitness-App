@@ -1,5 +1,7 @@
 <?php
-// logout.php: Skrip untuk proses logout
+// MUHAMAD SALWARUD 221011401371
+// 06TPLP027
+// Aplikasi Manajemen Fitness
 
 // Mulai session, diperlukan untuk mengakses dan menghapus variabel session
 session_start();

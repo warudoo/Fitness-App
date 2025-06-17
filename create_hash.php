@@ -1,7 +1,8 @@
 <?php
+// MUHAMAD SALWARUD 221011401371
+// 06TPLP027
+// Aplikasi Manajemen Fitness
 
-// Password sederhana yang akan kita hash.
-// Anda bisa mengganti ini jika mau, tapi ingat passwordnya.
 $passwordToHash = 'admin123';
 
 // Membuat hash menggunakan algoritma default yang kuat (BCRYPT)

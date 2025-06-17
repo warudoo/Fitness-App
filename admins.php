@@ -1,4 +1,7 @@
 <?php
+// MUHAMAD SALWARUD 221011401371
+// 06TPLP027
+// Aplikasi Manajemen Fitness
 // admins.php: Halaman untuk manajemen user admin
 
 include 'config.php';

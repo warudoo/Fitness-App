@@ -1,5 +1,7 @@
 <?php
-// login.php: Halaman untuk proses login admin
+// MUHAMAD SALWARUD 221011401371
+// 06TPLP027
+// Aplikasi Manajemen Fitness
 
 // Sertakan file konfigurasi database, yang juga sudah memulai session
 require_once "config.php";

@@ -1,4 +1,7 @@
 <?php
+// MUHAMAD SALWARUD 221011401371
+// 06TPLP027
+// Aplikasi Manajemen Fitness
 
 require_once 'config.php';
 require_once 'auth_check.php';
