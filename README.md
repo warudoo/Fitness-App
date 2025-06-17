@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="https://placehold.co/600x200/343a40/ffffff?text=Aplikasi+Fitness+UNPAM" alt="Banner Aplikasi Fitness">
+  <img src="https://placehold.co/600x200/2c3e50/ffffff?text=Aplikasi+Fitness+UNPAM" alt="Banner Aplikasi Fitness">
   <h1>Aplikasi Manajemen Fitness</h1>
   <p><strong>Studi Kasus untuk Workshop Pemrograman Web di Universitas Pamulang</strong></p>
   
@@ -12,27 +12,30 @@
 
 ## 📝 Deskripsi Singkat
 
-Selamat datang di repositori Aplikasi Manajemen Fitness! Proyek ini adalah aplikasi web sederhana yang dibangun menggunakan **PHP** dan **MySQL** sebagai studi kasus untuk kegiatan workshop di **Universitas Pamulang**. Aplikasi ini berfungsi sebagai sistem dasar untuk mengelola data member, paket fitness, dan transaksi di sebuah pusat kebugaran.
+Selamat datang di repositori Aplikasi Manajemen Fitness! Proyek ini adalah aplikasi web sederhana yang dibangun menggunakan **PHP** dan **MySQL** sebagai studi kasus untuk kegiatan workshop di **Universitas Pamulang**. Aplikasi ini berfungsi sebagai sistem dasar untuk mengelola data member, paket fitness, dan transaksi di sebuah pusat kebugaran, lengkap dengan sistem otentikasi admin.
+
+Tujuan utama dari proyek ini adalah untuk memberikan pemahaman praktis mengenai pengembangan aplikasi web dengan PHP, mulai dari struktur file, koneksi database, hingga implementasi operasi CRUD (*Create, Read, Update, Delete*) dan sistem login yang aman.
 
 ---
 
 ## ✨ Fitur Utama
 
--   **🔑 Sistem Login**: Sistem otentikasi admin yang aman menggunakan session dan password hashing.
+-   **🔑 Sistem Login**: Sistem otentikasi admin yang aman menggunakan `session` dan `password_hash()`.
 -   **📊 Dashboard**: Menampilkan ringkasan data total member dan total pendapatan.
 -   **👥 Manajemen Member**: Menambah, melihat, dan menghapus data member.
 -   **📦 Manajemen Paket**: Menambah, melihat, dan menghapus paket fitness.
 -   **💳 Manajemen Transaksi**: Mencatat dan melihat riwayat transaksi.
--   **👑 Manajemen Admin**: Menambah dan menghapus akun admin lainnya.
+-   **👑 Manajemen Admin**: Menambah dan menghapus akun admin lainnya (hanya bisa diakses setelah login).
 
 ---
 
 ## 🎯 Tujuan Pembelajaran
 
 Setelah mengikuti workshop dan mempelajari kode ini, peserta diharapkan mampu:
+
 1.  Memahami cara kerja aplikasi web berbasis PHP.
 2.  Menerapkan sistem login dan manajemen session yang aman.
-3.  Menggunakan password hashing untuk keamanan kredensial.
+3.  Menggunakan `password_hash()` dan `password_verify()` untuk keamanan kredensial.
 4.  Merancang dan membuat database MySQL.
 5.  Menghubungkan aplikasi PHP dengan database MySQL.
 6.  Menerapkan operasi CRUD untuk mengelola data.
@@ -58,7 +61,7 @@ Pastikan Anda sudah menginstal **XAMPP** di komputer Anda.
 
 **2. Clone atau Unduh Repositori**
 
-Clone repositori ini ke dalam direktori `htdocs` XAMPP Anda.
+Clone repositori ini ke dalam direktori `htdocs` XAMPP Anda dengan nama folder yang Anda gunakan.
 
 > ```bash
 > # Navigasi ke folder htdocs
@@ -77,15 +80,15 @@ Clone repositori ini ke dalam direktori `htdocs` XAMPP Anda.
 
 **4. Buat Admin Pertama (Sangat Penting!)**
 
-Karena sekarang ada sistem login, Anda perlu membuat user admin pertama secara manual di database.
+Karena sekarang ada sistem login, Anda **wajib** membuat user admin pertama secara manual di database.
 
 * Di phpMyAdmin, buka database `fitness` dan pilih tabel `user_admin`.
 * Klik tab **Insert** atau **Sisipkan**.
 * Isi form sebagai berikut:
-    * `id_user`: Biarkan kosong (auto-increment).
+    * `id_user`: Biarkan **kosong** (auto-increment).
     * `username`: `admin`
-    * `password`: Salin dan tempel (paste) hash berikut ini:  
-        `$2y$10$3yv9zS3gZpP9wQ8R7jJ4s.Ie8N3d2K5K/r9c7A7T6eY7W9qG0Xz.i`  
+    * `password`: Salin dan tempel (paste) hash berikut ini:
+        `$2y$10$3yv9zS3gZpP9wQ8R7jJ4s.Ie8N3d2K5K/r9c7A7T6eY7W9qG0Xz.i`
         *(Hash ini adalah untuk password "admin123")*
     * `nama_lengkap`: `Administrator Utama`
 * Klik **Go** atau **Kirim** untuk menyimpan.
@@ -96,7 +99,9 @@ Buka browser Anda dan akses URL berikut. Anda akan diarahkan ke halaman login.
 
 > `http://localhost/Fitnes_App/`
 
-Gunakan `username: admin` dan `password: admin123` untuk masuk.
+Gunakan kredensial berikut untuk masuk:
+* **Username:** `admin`
+* **Password:** `admin123`
 
 ---
 
