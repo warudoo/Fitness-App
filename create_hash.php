@@ -1,10 +1,4 @@
 <?php
-/*
-================================================================
-| FILE: create_hash.php                                        |
-| DESKRIPSI: Alat untuk membuat hash password yang aman.       |
-================================================================
-*/
 
 // Password sederhana yang akan kita hash.
 // Anda bisa mengganti ini jika mau, tapi ingat passwordnya.

@@ -1,10 +1,5 @@
 <?php
-/*
-================================================================
-| FILE: header.php (Diperbaiki)                                |
-| DESKRIPSI: Bagian atas (header) dari semua halaman.          |
-================================================================
-*/
+
 ?>
 <!DOCTYPE html>
 <html lang="id">
