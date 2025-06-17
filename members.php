@@ -25,19 +25,35 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['add_member'])) {
     exit();
 }
 
-// Cek jika ada aksi GET untuk menghapus member
+// Cek jika ada aksi GET untuk menghapus member (DIPERBAIKI)
 if (isset($_GET['delete'])) {
     $id_member = $_GET['delete'];
-    
-    $stmt = $conn->prepare("DELETE FROM member WHERE id_member = ?");
-    $stmt->bind_param("i", $id_member);
-    
-    if($stmt->execute()){
+
+    // Mulai transaksi untuk memastikan integritas data
+    $conn->begin_transaction();
+
+    try {
+        // 1. Hapus dulu semua transaksi yang terkait dengan member ini
+        $stmt_trans = $conn->prepare("DELETE FROM transaksi WHERE id_member = ?");
+        $stmt_trans->bind_param("i", $id_member);
+        $stmt_trans->execute();
+        $stmt_trans->close();
+
+        // 2. Setelah transaksi dihapus, baru hapus membernya
+        $stmt_member = $conn->prepare("DELETE FROM member WHERE id_member = ?");
+        $stmt_member->bind_param("i", $id_member);
+        $stmt_member->execute();
+        $stmt_member->close();
+
+        // Jika semua berhasil, commit transaksi
+        $conn->commit();
         header("Location: members.php?status=hapus_sukses");
-    } else {
-        header("Location: members.php?status=hapus_gagal");
+
+    } catch (mysqli_sql_exception $exception) {
+        // Jika ada error, batalkan semua perubahan
+        $conn->rollback();
+        header("Location: members.php?status=hapus_gagal&error=" . urlencode($exception->getMessage()));
     }
-    $stmt->close();
     exit();
 }
 
@@ -53,6 +69,9 @@ if(isset($_GET['status'])){
         echo '<div style="padding: 15px; background-color: #d4edda; color: #155724; border-radius: 5px; margin-bottom: 20px;">Member baru berhasil ditambahkan.</div>';
     } elseif($_GET['status'] == 'hapus_sukses'){
         echo '<div style="padding: 15px; background-color: #d4edda; color: #155724; border-radius: 5px; margin-bottom: 20px;">Member berhasil dihapus.</div>';
+    } elseif($_GET['status'] == 'hapus_gagal'){
+        $error = isset($_GET['error']) ? htmlspecialchars($_GET['error']) : 'Terjadi kesalahan.';
+        echo '<div style="padding: 15px; background-color: #f8d7da; color: #721c24; border-radius: 5px; margin-bottom: 20px;">Gagal menghapus member. Error: ' . $error . '</div>';
     }
 }
 ?>
@@ -110,7 +129,7 @@ if(isset($_GET['status'])){
                 echo "<td>" . date("d M Y", strtotime($row["tanggal_kadaluarsa"])) . "</td>";
                 echo "<td>" . $row["status"] . "</td>";
                 echo "<td>";
-                echo "<a href='members.php?delete=" . $row["id_member"] . "' class='btn btn-danger' onclick='return confirm(\"Apakah Anda yakin ingin menghapus member ini?\")'>Hapus</a>";
+                echo "<a href='members.php?delete=" . $row["id_member"] . "' class='btn btn-danger' onclick='return confirm(\"Apakah Anda yakin ingin menghapus member ini? Ini juga akan menghapus semua riwayat transaksinya.\")'>Hapus</a>";
                 echo "</td>";
                 echo "</tr>";
             }
