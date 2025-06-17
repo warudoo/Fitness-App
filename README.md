@@ -1,78 +1,98 @@
-Aplikasi Manajemen Fitness (Studi Kasus Workshop Universitas Pamulang)
-Deskripsi Singkat
-Selamat datang di repositori Aplikasi Manajemen Fitness! Proyek ini adalah aplikasi web sederhana yang dibangun menggunakan PHP dan MySQL sebagai studi kasus untuk kegiatan workshop di Universitas Pamulang. Aplikasi ini berfungsi sebagai sistem dasar untuk mengelola data member, paket fitness, dan transaksi di sebuah pusat kebugaran.
+<div align="center">
+  <img src="https://placehold.co/600x200/343a40/ffffff?text=Aplikasi+Fitness+UNPAM" alt="Banner Aplikasi Fitness">
+  <h1>Aplikasi Manajemen Fitness</h1>
+  <p><strong>Studi Kasus untuk Workshop Pemrograman Web di Universitas Pamulang</strong></p>
+  
+  <p>
+    <img src="https://img.shields.io/badge/PHP-777BB4?style=for-the-badge&logo=php&logoColor=white" alt="PHP Badge">
+    <img src="https://img.shields.io/badge/MySQL-4479A1?style=for-the-badge&logo=mysql&logoColor=white" alt="MySQL Badge">
+    <img src="https://img.shields.io/badge/Server-XAMPP-F79920?style=for-the-badge&logo=xampp&logoColor=white" alt="XAMPP Badge">
+  </p>
+</div>
 
-Tujuan dari proyek ini adalah untuk memberikan pemahaman dasar mengenai pengembangan aplikasi web dengan PHP, mulai dari struktur file, koneksi database, hingga operasi CRUD (Create, Read, Update, Delete).
+## 📝 Deskripsi Singkat
 
-Fitur Utama
-Aplikasi ini memiliki beberapa fitur inti, antara lain:
+Selamat datang di repositori Aplikasi Manajemen Fitness! Proyek ini adalah aplikasi web sederhana yang dibangun menggunakan **PHP** dan **MySQL** sebagai studi kasus untuk kegiatan workshop di **Universitas Pamulang**. Aplikasi ini berfungsi sebagai sistem dasar untuk mengelola data member, paket fitness, dan transaksi di sebuah pusat kebugaran.
 
-Dashboard: Menampilkan ringkasan data total member dan total pendapatan.
+Tujuan utama dari proyek ini adalah untuk memberikan pemahaman praktis mengenai pengembangan aplikasi web dengan PHP, mulai dari struktur file, koneksi database, hingga implementasi operasi CRUD (*Create, Read, Update, Delete*).
 
-Manajemen Member:
+---
 
-Menambah member baru.
+## ✨ Fitur Utama
 
-Melihat daftar semua member.
+-   **📊 Dashboard**: Menampilkan ringkasan data total member dan total pendapatan.
+-   **👥 Manajemen Member**:
+    -   Menambah member baru.
+    -   Melihat daftar semua member.
+    -   Menghapus data member.
+    -   Tanggal kadaluarsa keanggotaan dihitung otomatis berdasarkan paket yang dipilih.
+-   **📦 Manajemen Paket**:
+    -   Menambah paket fitness baru (misalnya, paket bulanan, 3 bulanan).
+    -   Melihat daftar paket yang tersedia.
+    -   Menghapus paket.
+-   **💳 Manajemen Transaksi**:
+    -   Mencatat transaksi baru saat member mendaftar atau memperpanjang keanggotaan.
+    -   Melihat riwayat semua transaksi yang telah terjadi.
 
-Menghapus data member.
+---
 
-Tanggal kadaluarsa keanggotaan dihitung otomatis berdasarkan paket yang dipilih.
+## 🎯 Tujuan Pembelajaran
 
-Manajemen Paket:
+Setelah mengikuti workshop dan mempelajari kode ini, peserta diharapkan mampu:
 
-Menambah paket fitness baru (misalnya, paket bulanan, 3 bulanan).
+1.  Memahami cara kerja aplikasi web berbasis PHP.
+2.  Merancang dan membuat database MySQL.
+3.  Menghubungkan aplikasi PHP dengan database MySQL.
+4.  Menerapkan operasi CRUD untuk mengelola data.
+5.  Memahami struktur dasar proyek PHP yang baik.
+6.  Mengelola *state* dan alur data antar halaman.
 
-Melihat daftar paket yang tersedia.
+---
 
-Menghapus paket.
+## 💻 Teknologi yang Digunakan
 
-Manajemen Transaksi:
+* **Backend**: PHP
+* **Database**: MySQL / MariaDB
+* **Frontend**: HTML & CSS (prosedural/tanpa framework)
+* **Server Lokal**: XAMPP
 
-Mencatat transaksi baru saat member mendaftar atau memperpanjang keanggotaan.
+---
 
-Melihat riwayat semua transaksi yang telah terjadi.
+## 🚀 Panduan Instalasi dan Setup
 
-Teknologi yang Digunakan
-Backend: PHP
-
-Database: MySQL / MariaDB
-
-Frontend: HTML & CSS (prosedural/tanpa framework)
-
-Server Lokal: XAMPP
-
-Panduan Instalasi dan Setup
 Untuk menjalankan aplikasi ini di komputer lokal Anda, ikuti langkah-langkah berikut:
 
-1. Prasyarat
+**1. Prasyarat**
 
-Pastikan Anda sudah menginstal XAMPP (atau server lokal sejenis seperti WAMP/MAMP) di komputer Anda. XAMPP akan menyediakan Apache (web server) dan MySQL (database).
+Pastikan Anda sudah menginstal **XAMPP** (atau server lokal sejenis seperti WAMP/MAMP) di komputer Anda. XAMPP akan menyediakan Apache (web server) dan MySQL (database).
 
-2. Clone Repositori
+**2. Clone atau Unduh Repositori**
 
-Buka terminal atau Git Bash, lalu clone repositori ini ke dalam direktori htdocs XAMPP Anda.
+Buka terminal atau Git Bash, lalu clone repositori ini ke dalam direktori `htdocs` XAMPP Anda.
 
-# Navigasi ke folder htdocs
-cd C:\xampp\htdocs
+> ```bash
+> # Navigasi ke folder htdocs
+> cd C:\xampp\htdocs
+>
+> # Clone repositori
+> git clone [URL_GITHUB_ANDA] "Fitnes App"
+> ```
 
-# Clone repositori
-git clone [URL_GITHUB_ANDA] "Fitnes App"
+> **Alternatif**: Jika Anda mengunduh file ZIP, ekstrak isinya dan letakkan folder `Fitnes App` di dalam `C:\xampp\htdocs\`.
 
-Catatan: Jika Anda mengunduh file ZIP, ekstrak isinya dan letakkan folder Fitnes App di dalam C:\xampp\htdocs\.
+**3. Buat dan Impor Database**
 
-3. Buat dan Impor Database
+* Jalankan modul **Apache** dan **MySQL** dari XAMPP Control Panel.
+* Buka browser dan akses `http://localhost/phpmyadmin`.
+* Buat database baru dengan nama `fitness`.
+* Pilih database `fitness` yang baru dibuat, lalu klik tab **Impor**.
+* Pilih file `db_fitness _latihan.sql` (atau nama file SQL yang sesuai) dari folder proyek Anda dan klik **Go** atau **Kirim**. Tabel-tabel akan otomatis dibuat.
 
-Jalankan modul Apache dan MySQL dari XAMPP Control Panel.
+**4. Konfigurasi Koneksi**
 
-Buka browser dan akses http://localhost/phpmyadmin.
+Buka file `config.php` di dalam folder proyek dan pastikan detail koneksi sudah sesuai (secara default, username `root` dan password kosong).
 
-Buat database baru dengan nama fitness.
-
-Pilih database fitness yang baru dibuat, lalu klik tab Impor.
-
-Pilih file db_fitness _latihan.sql (atau nama file SQL yang sesuai) dari folder proyek Anda dan klik Go atau Kirim. Tabel-tabel akan otomatis dibuat.
-
-4. Konfigurasi Koneksi
-
-Buka file `config.php
+```php
+// config.php
+define('DB_NAME', 'fitness'); // Pastikan nama database ini benar
+5. Jalankan AplikasiBuka browser Anda dan akses URL berikut untuk melihat aplikasi berjalan:http://localhost/Fitnes App/🤝 KontribusiMerasa ada yang bisa ditingkatkan? Silakan buat Pull Request atau buka Issue. Kontribusi dalam bentuk apapun sangat kami hargai, terutama untuk perbaikan bug, penambahan fitur, atau peningkatan dokumentasi.📜 LisensiProyek ini dilisensikan di bawah MIT License.
