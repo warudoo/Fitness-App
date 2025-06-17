@@ -116,7 +116,7 @@
     <a href="index.php" class="logo">FitnessApp</a>
     <nav class="nav-links">
         <a href="index.php">Dashboard</a>
-        <a href="member.php">Member</a>
+        <a href="members.php">Member</a>
         <a href="packages.php">Paket</a>
         <a href="transactions.php">Transaksi</a>
     </nav>

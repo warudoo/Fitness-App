@@ -74,11 +74,11 @@ Buka terminal atau Git Bash, lalu clone repositori ini ke dalam direktori `htdoc
 > # Navigasi ke folder htdocs
 > cd C:\xampp\htdocs
 >
-> # Clone repositori
-> git clone [URL_GITHUB_ANDA] "Fitnes App"
+> # Clone repositori dengan nama folder yang Anda gunakan
+> git clone [URL_GITHUB_ANDA] Fitnes_App
 > ```
 
-> **Alternatif**: Jika Anda mengunduh file ZIP, ekstrak isinya dan letakkan folder `Fitnes App` di dalam `C:\xampp\htdocs\`.
+> **Alternatif**: Jika Anda mengunduh file ZIP, ekstrak isinya dan pastikan nama foldernya adalah **`Fitnes_App`** di dalam `C:\xampp\htdocs\`.
 
 **3. Buat dan Impor Database**
 
@@ -95,4 +95,4 @@ Buka file `config.php` di dalam folder proyek dan pastikan detail koneksi sudah 
 ```php
 // config.php
 define('DB_NAME', 'fitness'); // Pastikan nama database ini benar
-5. Jalankan AplikasiBuka browser Anda dan akses URL berikut untuk melihat aplikasi berjalan:http://localhost/Fitnes App/🤝 KontribusiMerasa ada yang bisa ditingkatkan? Silakan buat Pull Request atau buka Issue. Kontribusi dalam bentuk apapun sangat kami hargai, terutama untuk perbaikan bug, penambahan fitur, atau peningkatan dokumentasi.📜 LisensiProyek ini dilisensikan di bawah MIT License.
+5. Jalankan AplikasiBuka browser Anda dan akses URL berikut untuk melihat aplikasi berjalan:http://localhost/Fitnes_App/⚠️ Troubleshooting: Error "Not Found"Jika Anda mendapatkan error "Not Found", 99% masalahnya adalah nama folder di htdocs tidak sama persis dengan nama yang Anda ketik di URL.🤝 KontribusiMerasa ada yang bisa ditingkatkan? Silakan buat Pull Request atau buka Issue. Kontribusi dalam bentuk apapun sangat kami hargai, terutama untuk perbaikan bug, penambahan fitur, atau peningkatan dokumentasi.📜 LisensiProyek ini dilisensikan di bawah MIT License.

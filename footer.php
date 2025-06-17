@@ -4,7 +4,7 @@
 </main> <!-- penutup .container -->
 
 <footer class="footer">
-    <p>&copy; <?php echo date("Y"); ?> Aplikasi Manajemen Fitness. Dibuat dengan ❤️.</p>
+    <p>&copy; <?php echo date("Y"); ?> Aplikasi Manajemen Fitness.</p>
 </footer>
 
 </body>
